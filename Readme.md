@@ -1,65 +1,66 @@
-# Deep Learning to predict root cause 
+# Root Cause Prediction Using Deep Learning
 
-## Problem statement
+![nn_architecture.png](Root%20Cause%20Prediction%20Using%20Deep%20Learning%2000c499d7984646f0b4367be118995ff1/nn_architecture.png)
 
-ITSM received multiple incident tickets every day. The incidents usually state the symptoms that are observed by the users. Technical teams may further analyse the problem to identify more symptoms. Then comes the analysis process of narrowing down the symptom to its root cause. here I have used Deep learning to predict which kind of root cause it is based on given symptoms.
+# Problem Statement
 
-**Incident Reports in ITSM usually states the symptoms. Identifying the root cause of the symptom quickly is a key determinant to reducing resolution times and improving user satisfaction.**
+In IT Service Management (ITSM), incident tickets often provide user-reported symptoms. Identifying the root cause of these symptoms is crucial for reducing resolution times and improving user satisfaction. This project employs deep learning to predict the root cause based on the given symptoms.
+
+**Key Objective:** Quickly identify the root cause of incidents reported in ITSM based on observed symptoms.
 
 ## Dataset
 
-Dataset link: [https://www.kaggle.com/datasets/anjolaoluwaajayi/root-cause-analysis-dataset/data](https://www.kaggle.com/datasets/anjolaoluwaajayi/root-cause-analysis-dataset/data)
+Dataset Link: [Root Cause Analysis Dataset on Kaggle](https://www.kaggle.com/datasets/anjolaoluwaajayi/root-cause-analysis-dataset/data)
 
-Training data is collected about the symptoms seen for the problems reported. These symptoms are gathered by technical teams when a problem is seen by the users. 
+### Overview
 
-To keep it simple, each symptom is a separate attribute. That is a flag with values one or zero to indicate if the symptom is seen or not. 
+The training data consists of symptoms collected by technical teams during incident analysis. Each symptom is represented as a binary attribute (1 or 0), indicating its presence or absence. The dataset includes 1000 training examples, providing a foundation for predicting root causes.
 
-Total 1000 training examples are used to train the model. predictions will be much more reliable if training data is available with more number of symptoms.
-
- The symptoms are:
+### Symptoms Include:
 
 - CPU load
 - Memory load
 - Network delays
-- Some of these specific error codes were seen in the log files
-- Root cause:
-    - the root cause attribute is the target variable that contains classes of root causes.
+- Specific error codes in log files
 
-Note : This example uses a simple set of symptoms but in real-life scenarios there can be a large number of symptoms. Symptoms can further be broken down by where they are seen. Like for CPU load, was it at the load balancer or a specific microservice? Symptoms can also be isolated from general text using text mining. Let's now proceed to build a model based on this data set to predict the root cause based on the symptoms seen for the problem.
+### Target Variable:
 
-# Deep Learning to Predict Root Cause
+- Root Cause (Classes of root causes)
 
-![nn_architecture.png](Images%2000c499d7984646f0b4367be118995ff1/nn_architecture.png)
+*Note: In real-world scenarios, symptom diversity may be vast. Symptoms can be further categorized by location (e.g., load balancer, microservice) and isolated from text using text mining.*
 
 ## Model Architecture:
 
-![Screenshot 2023-12-29 at 11.41.50 AM.png](Images%2000c499d7984646f0b4367be118995ff1/Screenshot_2023-12-29_at_11.41.50_AM.png)
+![Screenshot 2023-12-29 at 11.41.50 AM.png](Root%20Cause%20Prediction%20Using%20Deep%20Learning%2000c499d7984646f0b4367be118995ff1/Screenshot_2023-12-29_at_11.41.50_AM.png)
 
-### Activation function used :
+### Model Overview
 
-- hidden layers
-    - `relu`
-- output layer
-    - `softmax`
+The neural network architecture consists of hidden layers using the `relu` activation function and an output layer using `softmax`. The model is trained with categorical cross-entropy loss and the Adam optimizer.
 
-### loss : 
-- `categorical cross entropy`
+### Activation Functions
 
-### optimiser:
-- `Adam`
+- Hidden Layers: `relu`
+- Output Layer: `softmax`
 
+### Loss Function
 
-# Model Performance
+- Categorical Cross-Entropy
 
-Training accuracy = `87%`
+### Optimizer
 
-Validation accuracy = `81%`
+- Adam
 
-![accuracy.png](Images%2000c499d7984646f0b4367be118995ff1/accuracy.png)
+## Model Performance
 
-![loss.png](Images%2000c499d7984646f0b4367be118995ff1/loss.png)
+- Training Accuracy: 87%
+- Validation Accuracy: 81%
 
+![accuracy.png](Root%20Cause%20Prediction%20Using%20Deep%20Learning%2000c499d7984646f0b4367be118995ff1/accuracy.png)
 
-# Deployment
+![loss.png](Root%20Cause%20Prediction%20Using%20Deep%20Learning%2000c499d7984646f0b4367be118995ff1/loss.png)
 
-![app_ss.png](Images%2000c499d7984646f0b4367be118995ff1/app_ss.png)
+## Deployment
+
+The trained model can be deployed for practical use. Below is a screenshot of the web application:
+
+![app_ss.png](Root%20Cause%20Prediction%20Using%20Deep%20Learning%2000c499d7984646f0b4367be118995ff1/app_ss.png)
